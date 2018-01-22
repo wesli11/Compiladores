@@ -71,7 +71,6 @@ def p_decfun1(p):
      	'''decFun : FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA'''	
         #p[0] = decfun1((p[2]),Id(p[3]),p[5],"decfun1")
         print "decFun 1"  
-
 	
 def p_decTipos1(p):
 	    '''decTipos : t_tipos'''
@@ -82,7 +81,6 @@ def p_decTipos2(p):
 	    '''decTipos : empty'''
 	    #p[0] = Null()
         print "nulo" 
-
 
 def p_Sprima1(p):
         '''Sprima : WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA'''
@@ -152,10 +150,7 @@ def p_numbero1(p):
 	    '''variable : NUMERO'''
 	    print "numero <<"   
 
-def p_E3(p):
-        '''E : variable'''
-        #p[0] = E3(p[1],"E3")
-        print "variab"
+
      
 def p_E4(p):
         '''t_tipos : t_tipos AND Y'''
@@ -181,7 +176,6 @@ def p_Y4(p):
         '''Y : AUTO_INC Yprima'''
         #p[0] = Y4(p[2],"autoincremento")
         print "Y autoincremento"
-
 
 def p_Y5(p):
         '''Yprima : ID'''
