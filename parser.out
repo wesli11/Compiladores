@@ -1,0 +1,1197 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CADENA_CARACTERES
+    PUNTO
+    CONSTANTE_ENTERA
+    DISTINTO
+    AUTO_DEC
+    COMENTARIOS
+    NEGACION
+    TIPO
+    AUTO_DECREMENTO
+    DOS_PUNTOS
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> block
+Rule 2     block -> D_de decFun Sprima empty
+Rule 3     a_A -> t_tipos ID COMA a_A
+Rule 4     a_A -> t_tipos ID
+Rule 5     a_A -> t_tipos ID PUNTO_Y_COMA
+Rule 6     a_A -> empty
+Rule 7     D_de -> VAR t_tipos ID j_J PUNTO_Y_COMA
+Rule 8     j_J -> COMA ID j_J
+Rule 9     j_J -> empty
+Rule 10    decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA
+Rule 11    decTipos -> t_tipos
+Rule 12    decTipos -> empty
+Rule 13    t_tipos -> INT
+Rule 14    t_tipos -> BOOL
+Rule 15    t_tipos -> CHARS
+Rule 16    Sprima -> WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA
+Rule 17    Sprima -> sesese
+Rule 18    sesese -> ID ASIGNACION E PUNTO_Y_COMA
+Rule 19    sesese -> ID ASIGNACION E
+Rule 20    sesese -> IF PARENTESIS_AB E PARENTESIS_CE
+Rule 21    sesese -> RETURN E PUNTO_Y_COMA
+Rule 22    sesese -> WRITE PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA
+Rule 23    sesese -> PROMPT PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA
+Rule 24    E -> E PLUS variable
+Rule 25    E -> E MENOS variable
+Rule 26    E -> E MENOR variable
+Rule 27    E -> E MAYOR variable
+Rule 28    variable -> ID
+Rule 29    variable -> NUMERO
+Rule 30    E -> variable
+Rule 31    t_tipos -> t_tipos AND Y
+Rule 32    Y -> E
+Rule 33    Y -> E COMA Y
+Rule 34    Y -> empty
+Rule 35    Y -> AUTO_INC Yprima
+Rule 36    Yprima -> ID
+Rule 37    Yprima -> ID PARENTESIS_AB B PARENTESIS_CE
+Rule 38    B -> E
+Rule 39    B -> E COMA B
+Rule 40    B -> empty
+Rule 41    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 31
+ASIGNACION           : 18 19
+AUTO_DEC             : 
+AUTO_DECREMENTO      : 
+AUTO_INC             : 35
+BOOL                 : 14
+CADENA_CARACTERES    : 
+CHARS                : 15
+COMA                 : 3 8 33 39
+COMENTARIOS          : 
+CONSTANTE_ENTERA     : 
+DISTINTO             : 
+DOS_PUNTOS           : 
+FUNCTION             : 10
+ID                   : 3 4 5 7 8 10 18 19 23 28 36 37
+IF                   : 20
+INT                  : 13
+LLAVE_ABIERTA        : 10 16
+LLAVE_CERRADA        : 10 16
+MAYOR                : 27
+MENOR                : 26
+MENOS                : 25
+NEGACION             : 
+NUMERO               : 29
+PARENTESIS_AB        : 10 16 20 22 23 37
+PARENTESIS_CE        : 10 16 20 22 23 37
+PLUS                 : 24
+PROMPT               : 23
+PUNTO                : 
+PUNTO_Y_COMA         : 5 7 18 21 22 23
+RETURN               : 21
+TIPO                 : 
+VAR                  : 7
+WHILE                : 16
+WRITE                : 22
+error                : 
+
+Nonterminals, with rules where they appear
+
+B                    : 22 37 39
+D_de                 : 2
+E                    : 16 18 19 20 21 24 25 26 27 32 33 38 39
+Sprima               : 2 10
+Y                    : 31 33
+Yprima               : 35
+a_A                  : 3 10
+block                : 1
+decFun               : 2
+decTipos             : 10
+empty                : 2 6 9 12 34 40
+j_J                  : 7 8
+program              : 0
+sesese               : 16 17
+t_tipos              : 3 4 5 7 11 31
+variable             : 24 25 26 27 30
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . block
+    (2) block -> . D_de decFun Sprima empty
+    (7) D_de -> . VAR t_tipos ID j_J PUNTO_Y_COMA
+
+    VAR             shift and go to state 4
+
+    D_de                           shift and go to state 1
+    program                        shift and go to state 2
+    block                          shift and go to state 3
+
+state 1
+
+    (2) block -> D_de . decFun Sprima empty
+    (10) decFun -> . FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA
+
+    FUNCTION        shift and go to state 5
+
+    decFun                         shift and go to state 6
+
+state 2
+
+    (0) S' -> program .
+
+
+
+state 3
+
+    (1) program -> block .
+
+    $end            reduce using rule 1 (program -> block .)
+
+
+state 4
+
+    (7) D_de -> VAR . t_tipos ID j_J PUNTO_Y_COMA
+    (13) t_tipos -> . INT
+    (14) t_tipos -> . BOOL
+    (15) t_tipos -> . CHARS
+    (31) t_tipos -> . t_tipos AND Y
+
+    INT             shift and go to state 9
+    BOOL            shift and go to state 10
+    CHARS           shift and go to state 7
+
+    t_tipos                        shift and go to state 8
+
+state 5
+
+    (10) decFun -> FUNCTION . decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA
+    (11) decTipos -> . t_tipos
+    (12) decTipos -> . empty
+    (13) t_tipos -> . INT
+    (14) t_tipos -> . BOOL
+    (15) t_tipos -> . CHARS
+    (31) t_tipos -> . t_tipos AND Y
+    (41) empty -> .
+
+    INT             shift and go to state 9
+    BOOL            shift and go to state 10
+    CHARS           shift and go to state 7
+    ID              reduce using rule 41 (empty -> .)
+
+    t_tipos                        shift and go to state 11
+    decTipos                       shift and go to state 12
+    empty                          shift and go to state 13
+
+state 6
+
+    (2) block -> D_de decFun . Sprima empty
+    (16) Sprima -> . WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA
+    (17) Sprima -> . sesese
+    (18) sesese -> . ID ASIGNACION E PUNTO_Y_COMA
+    (19) sesese -> . ID ASIGNACION E
+    (20) sesese -> . IF PARENTESIS_AB E PARENTESIS_CE
+    (21) sesese -> . RETURN E PUNTO_Y_COMA
+    (22) sesese -> . WRITE PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA
+    (23) sesese -> . PROMPT PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA
+
+    WHILE           shift and go to state 17
+    ID              shift and go to state 20
+    IF              shift and go to state 21
+    RETURN          shift and go to state 19
+    WRITE           shift and go to state 16
+    PROMPT          shift and go to state 14
+
+    sesese                         shift and go to state 15
+    Sprima                         shift and go to state 18
+
+state 7
+
+    (15) t_tipos -> CHARS .
+
+    ID              reduce using rule 15 (t_tipos -> CHARS .)
+    AND             reduce using rule 15 (t_tipos -> CHARS .)
+
+
+state 8
+
+    (7) D_de -> VAR t_tipos . ID j_J PUNTO_Y_COMA
+    (31) t_tipos -> t_tipos . AND Y
+
+    ID              shift and go to state 23
+    AND             shift and go to state 22
+
+
+state 9
+
+    (13) t_tipos -> INT .
+
+    ID              reduce using rule 13 (t_tipos -> INT .)
+    AND             reduce using rule 13 (t_tipos -> INT .)
+
+
+state 10
+
+    (14) t_tipos -> BOOL .
+
+    ID              reduce using rule 14 (t_tipos -> BOOL .)
+    AND             reduce using rule 14 (t_tipos -> BOOL .)
+
+
+state 11
+
+    (11) decTipos -> t_tipos .
+    (31) t_tipos -> t_tipos . AND Y
+
+    ID              reduce using rule 11 (decTipos -> t_tipos .)
+    AND             shift and go to state 22
+
+
+state 12
+
+    (10) decFun -> FUNCTION decTipos . ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA
+
+    ID              shift and go to state 24
+
+
+state 13
+
+    (12) decTipos -> empty .
+
+    ID              reduce using rule 12 (decTipos -> empty .)
+
+
+state 14
+
+    (23) sesese -> PROMPT . PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA
+
+    PARENTESIS_AB   shift and go to state 25
+
+
+state 15
+
+    (17) Sprima -> sesese .
+
+    $end            reduce using rule 17 (Sprima -> sesese .)
+    LLAVE_CERRADA   reduce using rule 17 (Sprima -> sesese .)
+
+
+state 16
+
+    (22) sesese -> WRITE . PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA
+
+    PARENTESIS_AB   shift and go to state 26
+
+
+state 17
+
+    (16) Sprima -> WHILE . PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA
+
+    PARENTESIS_AB   shift and go to state 27
+
+
+state 18
+
+    (2) block -> D_de decFun Sprima . empty
+    (41) empty -> .
+
+    $end            reduce using rule 41 (empty -> .)
+
+    empty                          shift and go to state 28
+
+state 19
+
+    (21) sesese -> RETURN . E PUNTO_Y_COMA
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 31
+    E                              shift and go to state 29
+
+state 20
+
+    (18) sesese -> ID . ASIGNACION E PUNTO_Y_COMA
+    (19) sesese -> ID . ASIGNACION E
+
+    ASIGNACION      shift and go to state 33
+
+
+state 21
+
+    (20) sesese -> IF . PARENTESIS_AB E PARENTESIS_CE
+
+    PARENTESIS_AB   shift and go to state 34
+
+
+state 22
+
+    (31) t_tipos -> t_tipos AND . Y
+    (32) Y -> . E
+    (33) Y -> . E COMA Y
+    (34) Y -> . empty
+    (35) Y -> . AUTO_INC Yprima
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (41) empty -> .
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+  ! shift/reduce conflict for ID resolved as shift
+    AUTO_INC        shift and go to state 36
+    AND             reduce using rule 41 (empty -> .)
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+  ! ID              [ reduce using rule 41 (empty -> .) ]
+
+    E                              shift and go to state 35
+    variable                       shift and go to state 31
+    Y                              shift and go to state 37
+    empty                          shift and go to state 38
+
+state 23
+
+    (7) D_de -> VAR t_tipos ID . j_J PUNTO_Y_COMA
+    (8) j_J -> . COMA ID j_J
+    (9) j_J -> . empty
+    (41) empty -> .
+
+    COMA            shift and go to state 40
+    PUNTO_Y_COMA    reduce using rule 41 (empty -> .)
+
+    j_J                            shift and go to state 39
+    empty                          shift and go to state 41
+
+state 24
+
+    (10) decFun -> FUNCTION decTipos ID . PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA
+
+    PARENTESIS_AB   shift and go to state 42
+
+
+state 25
+
+    (23) sesese -> PROMPT PARENTESIS_AB . ID PARENTESIS_CE PUNTO_Y_COMA
+
+    ID              shift and go to state 43
+
+
+state 26
+
+    (22) sesese -> WRITE PARENTESIS_AB . B PARENTESIS_CE PUNTO_Y_COMA
+    (38) B -> . E
+    (39) B -> . E COMA B
+    (40) B -> . empty
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (41) empty -> .
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    PARENTESIS_CE   reduce using rule 41 (empty -> .)
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 31
+    B                              shift and go to state 44
+    E                              shift and go to state 45
+    empty                          shift and go to state 46
+
+state 27
+
+    (16) Sprima -> WHILE PARENTESIS_AB . E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 31
+    E                              shift and go to state 47
+
+state 28
+
+    (2) block -> D_de decFun Sprima empty .
+
+    $end            reduce using rule 2 (block -> D_de decFun Sprima empty .)
+
+
+state 29
+
+    (21) sesese -> RETURN E . PUNTO_Y_COMA
+    (24) E -> E . PLUS variable
+    (25) E -> E . MENOS variable
+    (26) E -> E . MENOR variable
+    (27) E -> E . MAYOR variable
+
+    PUNTO_Y_COMA    shift and go to state 52
+    PLUS            shift and go to state 51
+    MENOS           shift and go to state 50
+    MENOR           shift and go to state 49
+    MAYOR           shift and go to state 48
+
+
+state 30
+
+    (29) variable -> NUMERO .
+
+    COMA            reduce using rule 29 (variable -> NUMERO .)
+    PLUS            reduce using rule 29 (variable -> NUMERO .)
+    MENOS           reduce using rule 29 (variable -> NUMERO .)
+    MENOR           reduce using rule 29 (variable -> NUMERO .)
+    MAYOR           reduce using rule 29 (variable -> NUMERO .)
+    ID              reduce using rule 29 (variable -> NUMERO .)
+    AND             reduce using rule 29 (variable -> NUMERO .)
+    PARENTESIS_CE   reduce using rule 29 (variable -> NUMERO .)
+    PUNTO_Y_COMA    reduce using rule 29 (variable -> NUMERO .)
+    $end            reduce using rule 29 (variable -> NUMERO .)
+    LLAVE_CERRADA   reduce using rule 29 (variable -> NUMERO .)
+
+
+state 31
+
+    (30) E -> variable .
+
+    COMA            reduce using rule 30 (E -> variable .)
+    PLUS            reduce using rule 30 (E -> variable .)
+    MENOS           reduce using rule 30 (E -> variable .)
+    MENOR           reduce using rule 30 (E -> variable .)
+    MAYOR           reduce using rule 30 (E -> variable .)
+    ID              reduce using rule 30 (E -> variable .)
+    AND             reduce using rule 30 (E -> variable .)
+    PARENTESIS_CE   reduce using rule 30 (E -> variable .)
+    PUNTO_Y_COMA    reduce using rule 30 (E -> variable .)
+    $end            reduce using rule 30 (E -> variable .)
+    LLAVE_CERRADA   reduce using rule 30 (E -> variable .)
+
+
+state 32
+
+    (28) variable -> ID .
+
+    COMA            reduce using rule 28 (variable -> ID .)
+    PLUS            reduce using rule 28 (variable -> ID .)
+    MENOS           reduce using rule 28 (variable -> ID .)
+    MENOR           reduce using rule 28 (variable -> ID .)
+    MAYOR           reduce using rule 28 (variable -> ID .)
+    ID              reduce using rule 28 (variable -> ID .)
+    AND             reduce using rule 28 (variable -> ID .)
+    PARENTESIS_CE   reduce using rule 28 (variable -> ID .)
+    PUNTO_Y_COMA    reduce using rule 28 (variable -> ID .)
+    $end            reduce using rule 28 (variable -> ID .)
+    LLAVE_CERRADA   reduce using rule 28 (variable -> ID .)
+
+
+state 33
+
+    (18) sesese -> ID ASIGNACION . E PUNTO_Y_COMA
+    (19) sesese -> ID ASIGNACION . E
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 31
+    E                              shift and go to state 53
+
+state 34
+
+    (20) sesese -> IF PARENTESIS_AB . E PARENTESIS_CE
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 31
+    E                              shift and go to state 54
+
+state 35
+
+    (32) Y -> E .
+    (33) Y -> E . COMA Y
+    (24) E -> E . PLUS variable
+    (25) E -> E . MENOS variable
+    (26) E -> E . MENOR variable
+    (27) E -> E . MAYOR variable
+
+    ID              reduce using rule 32 (Y -> E .)
+    AND             reduce using rule 32 (Y -> E .)
+    COMA            shift and go to state 55
+    PLUS            shift and go to state 51
+    MENOS           shift and go to state 50
+    MENOR           shift and go to state 49
+    MAYOR           shift and go to state 48
+
+
+state 36
+
+    (35) Y -> AUTO_INC . Yprima
+    (36) Yprima -> . ID
+    (37) Yprima -> . ID PARENTESIS_AB B PARENTESIS_CE
+
+    ID              shift and go to state 57
+
+    Yprima                         shift and go to state 56
+
+state 37
+
+    (31) t_tipos -> t_tipos AND Y .
+
+    ID              reduce using rule 31 (t_tipos -> t_tipos AND Y .)
+    AND             reduce using rule 31 (t_tipos -> t_tipos AND Y .)
+
+
+state 38
+
+    (34) Y -> empty .
+
+    ID              reduce using rule 34 (Y -> empty .)
+    AND             reduce using rule 34 (Y -> empty .)
+
+
+state 39
+
+    (7) D_de -> VAR t_tipos ID j_J . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 58
+
+
+state 40
+
+    (8) j_J -> COMA . ID j_J
+
+    ID              shift and go to state 59
+
+
+state 41
+
+    (9) j_J -> empty .
+
+    PUNTO_Y_COMA    reduce using rule 9 (j_J -> empty .)
+
+
+state 42
+
+    (10) decFun -> FUNCTION decTipos ID PARENTESIS_AB . a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA
+    (3) a_A -> . t_tipos ID COMA a_A
+    (4) a_A -> . t_tipos ID
+    (5) a_A -> . t_tipos ID PUNTO_Y_COMA
+    (6) a_A -> . empty
+    (13) t_tipos -> . INT
+    (14) t_tipos -> . BOOL
+    (15) t_tipos -> . CHARS
+    (31) t_tipos -> . t_tipos AND Y
+    (41) empty -> .
+
+    INT             shift and go to state 9
+    BOOL            shift and go to state 10
+    CHARS           shift and go to state 7
+    PARENTESIS_CE   reduce using rule 41 (empty -> .)
+
+    a_A                            shift and go to state 61
+    t_tipos                        shift and go to state 60
+    empty                          shift and go to state 62
+
+state 43
+
+    (23) sesese -> PROMPT PARENTESIS_AB ID . PARENTESIS_CE PUNTO_Y_COMA
+
+    PARENTESIS_CE   shift and go to state 63
+
+
+state 44
+
+    (22) sesese -> WRITE PARENTESIS_AB B . PARENTESIS_CE PUNTO_Y_COMA
+
+    PARENTESIS_CE   shift and go to state 64
+
+
+state 45
+
+    (38) B -> E .
+    (39) B -> E . COMA B
+    (24) E -> E . PLUS variable
+    (25) E -> E . MENOS variable
+    (26) E -> E . MENOR variable
+    (27) E -> E . MAYOR variable
+
+    PARENTESIS_CE   reduce using rule 38 (B -> E .)
+    COMA            shift and go to state 65
+    PLUS            shift and go to state 51
+    MENOS           shift and go to state 50
+    MENOR           shift and go to state 49
+    MAYOR           shift and go to state 48
+
+
+state 46
+
+    (40) B -> empty .
+
+    PARENTESIS_CE   reduce using rule 40 (B -> empty .)
+
+
+state 47
+
+    (16) Sprima -> WHILE PARENTESIS_AB E . PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA
+    (24) E -> E . PLUS variable
+    (25) E -> E . MENOS variable
+    (26) E -> E . MENOR variable
+    (27) E -> E . MAYOR variable
+
+    PARENTESIS_CE   shift and go to state 66
+    PLUS            shift and go to state 51
+    MENOS           shift and go to state 50
+    MENOR           shift and go to state 49
+    MAYOR           shift and go to state 48
+
+
+state 48
+
+    (27) E -> E MAYOR . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 67
+
+state 49
+
+    (26) E -> E MENOR . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 68
+
+state 50
+
+    (25) E -> E MENOS . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 69
+
+state 51
+
+    (24) E -> E PLUS . variable
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 70
+
+state 52
+
+    (21) sesese -> RETURN E PUNTO_Y_COMA .
+
+    $end            reduce using rule 21 (sesese -> RETURN E PUNTO_Y_COMA .)
+    LLAVE_CERRADA   reduce using rule 21 (sesese -> RETURN E PUNTO_Y_COMA .)
+
+
+state 53
+
+    (18) sesese -> ID ASIGNACION E . PUNTO_Y_COMA
+    (19) sesese -> ID ASIGNACION E .
+    (24) E -> E . PLUS variable
+    (25) E -> E . MENOS variable
+    (26) E -> E . MENOR variable
+    (27) E -> E . MAYOR variable
+
+    PUNTO_Y_COMA    shift and go to state 71
+    $end            reduce using rule 19 (sesese -> ID ASIGNACION E .)
+    LLAVE_CERRADA   reduce using rule 19 (sesese -> ID ASIGNACION E .)
+    PLUS            shift and go to state 51
+    MENOS           shift and go to state 50
+    MENOR           shift and go to state 49
+    MAYOR           shift and go to state 48
+
+
+state 54
+
+    (20) sesese -> IF PARENTESIS_AB E . PARENTESIS_CE
+    (24) E -> E . PLUS variable
+    (25) E -> E . MENOS variable
+    (26) E -> E . MENOR variable
+    (27) E -> E . MAYOR variable
+
+    PARENTESIS_CE   shift and go to state 72
+    PLUS            shift and go to state 51
+    MENOS           shift and go to state 50
+    MENOR           shift and go to state 49
+    MAYOR           shift and go to state 48
+
+
+state 55
+
+    (33) Y -> E COMA . Y
+    (32) Y -> . E
+    (33) Y -> . E COMA Y
+    (34) Y -> . empty
+    (35) Y -> . AUTO_INC Yprima
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (41) empty -> .
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+  ! shift/reduce conflict for ID resolved as shift
+    AUTO_INC        shift and go to state 36
+    AND             reduce using rule 41 (empty -> .)
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+  ! ID              [ reduce using rule 41 (empty -> .) ]
+
+    Y                              shift and go to state 73
+    variable                       shift and go to state 31
+    E                              shift and go to state 35
+    empty                          shift and go to state 38
+
+state 56
+
+    (35) Y -> AUTO_INC Yprima .
+
+    ID              reduce using rule 35 (Y -> AUTO_INC Yprima .)
+    AND             reduce using rule 35 (Y -> AUTO_INC Yprima .)
+
+
+state 57
+
+    (36) Yprima -> ID .
+    (37) Yprima -> ID . PARENTESIS_AB B PARENTESIS_CE
+
+    ID              reduce using rule 36 (Yprima -> ID .)
+    AND             reduce using rule 36 (Yprima -> ID .)
+    PARENTESIS_AB   shift and go to state 74
+
+
+state 58
+
+    (7) D_de -> VAR t_tipos ID j_J PUNTO_Y_COMA .
+
+    FUNCTION        reduce using rule 7 (D_de -> VAR t_tipos ID j_J PUNTO_Y_COMA .)
+
+
+state 59
+
+    (8) j_J -> COMA ID . j_J
+    (8) j_J -> . COMA ID j_J
+    (9) j_J -> . empty
+    (41) empty -> .
+
+    COMA            shift and go to state 40
+    PUNTO_Y_COMA    reduce using rule 41 (empty -> .)
+
+    j_J                            shift and go to state 75
+    empty                          shift and go to state 41
+
+state 60
+
+    (3) a_A -> t_tipos . ID COMA a_A
+    (4) a_A -> t_tipos . ID
+    (5) a_A -> t_tipos . ID PUNTO_Y_COMA
+    (31) t_tipos -> t_tipos . AND Y
+
+    ID              shift and go to state 76
+    AND             shift and go to state 22
+
+
+state 61
+
+    (10) decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A . PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA
+
+    PARENTESIS_CE   shift and go to state 77
+
+
+state 62
+
+    (6) a_A -> empty .
+
+    PARENTESIS_CE   reduce using rule 6 (a_A -> empty .)
+
+
+state 63
+
+    (23) sesese -> PROMPT PARENTESIS_AB ID PARENTESIS_CE . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 78
+
+
+state 64
+
+    (22) sesese -> WRITE PARENTESIS_AB B PARENTESIS_CE . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 79
+
+
+state 65
+
+    (39) B -> E COMA . B
+    (38) B -> . E
+    (39) B -> . E COMA B
+    (40) B -> . empty
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (41) empty -> .
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    PARENTESIS_CE   reduce using rule 41 (empty -> .)
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 31
+    B                              shift and go to state 80
+    E                              shift and go to state 45
+    empty                          shift and go to state 46
+
+state 66
+
+    (16) Sprima -> WHILE PARENTESIS_AB E PARENTESIS_CE . LLAVE_ABIERTA sesese LLAVE_CERRADA
+
+    LLAVE_ABIERTA   shift and go to state 81
+
+
+state 67
+
+    (27) E -> E MAYOR variable .
+
+    COMA            reduce using rule 27 (E -> E MAYOR variable .)
+    PLUS            reduce using rule 27 (E -> E MAYOR variable .)
+    MENOS           reduce using rule 27 (E -> E MAYOR variable .)
+    MENOR           reduce using rule 27 (E -> E MAYOR variable .)
+    MAYOR           reduce using rule 27 (E -> E MAYOR variable .)
+    ID              reduce using rule 27 (E -> E MAYOR variable .)
+    AND             reduce using rule 27 (E -> E MAYOR variable .)
+    PARENTESIS_CE   reduce using rule 27 (E -> E MAYOR variable .)
+    PUNTO_Y_COMA    reduce using rule 27 (E -> E MAYOR variable .)
+    $end            reduce using rule 27 (E -> E MAYOR variable .)
+    LLAVE_CERRADA   reduce using rule 27 (E -> E MAYOR variable .)
+
+
+state 68
+
+    (26) E -> E MENOR variable .
+
+    COMA            reduce using rule 26 (E -> E MENOR variable .)
+    PLUS            reduce using rule 26 (E -> E MENOR variable .)
+    MENOS           reduce using rule 26 (E -> E MENOR variable .)
+    MENOR           reduce using rule 26 (E -> E MENOR variable .)
+    MAYOR           reduce using rule 26 (E -> E MENOR variable .)
+    ID              reduce using rule 26 (E -> E MENOR variable .)
+    AND             reduce using rule 26 (E -> E MENOR variable .)
+    PARENTESIS_CE   reduce using rule 26 (E -> E MENOR variable .)
+    PUNTO_Y_COMA    reduce using rule 26 (E -> E MENOR variable .)
+    $end            reduce using rule 26 (E -> E MENOR variable .)
+    LLAVE_CERRADA   reduce using rule 26 (E -> E MENOR variable .)
+
+
+state 69
+
+    (25) E -> E MENOS variable .
+
+    COMA            reduce using rule 25 (E -> E MENOS variable .)
+    PLUS            reduce using rule 25 (E -> E MENOS variable .)
+    MENOS           reduce using rule 25 (E -> E MENOS variable .)
+    MENOR           reduce using rule 25 (E -> E MENOS variable .)
+    MAYOR           reduce using rule 25 (E -> E MENOS variable .)
+    ID              reduce using rule 25 (E -> E MENOS variable .)
+    AND             reduce using rule 25 (E -> E MENOS variable .)
+    PARENTESIS_CE   reduce using rule 25 (E -> E MENOS variable .)
+    PUNTO_Y_COMA    reduce using rule 25 (E -> E MENOS variable .)
+    $end            reduce using rule 25 (E -> E MENOS variable .)
+    LLAVE_CERRADA   reduce using rule 25 (E -> E MENOS variable .)
+
+
+state 70
+
+    (24) E -> E PLUS variable .
+
+    COMA            reduce using rule 24 (E -> E PLUS variable .)
+    PLUS            reduce using rule 24 (E -> E PLUS variable .)
+    MENOS           reduce using rule 24 (E -> E PLUS variable .)
+    MENOR           reduce using rule 24 (E -> E PLUS variable .)
+    MAYOR           reduce using rule 24 (E -> E PLUS variable .)
+    ID              reduce using rule 24 (E -> E PLUS variable .)
+    AND             reduce using rule 24 (E -> E PLUS variable .)
+    PARENTESIS_CE   reduce using rule 24 (E -> E PLUS variable .)
+    PUNTO_Y_COMA    reduce using rule 24 (E -> E PLUS variable .)
+    $end            reduce using rule 24 (E -> E PLUS variable .)
+    LLAVE_CERRADA   reduce using rule 24 (E -> E PLUS variable .)
+
+
+state 71
+
+    (18) sesese -> ID ASIGNACION E PUNTO_Y_COMA .
+
+    $end            reduce using rule 18 (sesese -> ID ASIGNACION E PUNTO_Y_COMA .)
+    LLAVE_CERRADA   reduce using rule 18 (sesese -> ID ASIGNACION E PUNTO_Y_COMA .)
+
+
+state 72
+
+    (20) sesese -> IF PARENTESIS_AB E PARENTESIS_CE .
+
+    $end            reduce using rule 20 (sesese -> IF PARENTESIS_AB E PARENTESIS_CE .)
+    LLAVE_CERRADA   reduce using rule 20 (sesese -> IF PARENTESIS_AB E PARENTESIS_CE .)
+
+
+state 73
+
+    (33) Y -> E COMA Y .
+
+    ID              reduce using rule 33 (Y -> E COMA Y .)
+    AND             reduce using rule 33 (Y -> E COMA Y .)
+
+
+state 74
+
+    (37) Yprima -> ID PARENTESIS_AB . B PARENTESIS_CE
+    (38) B -> . E
+    (39) B -> . E COMA B
+    (40) B -> . empty
+    (24) E -> . E PLUS variable
+    (25) E -> . E MENOS variable
+    (26) E -> . E MENOR variable
+    (27) E -> . E MAYOR variable
+    (30) E -> . variable
+    (41) empty -> .
+    (28) variable -> . ID
+    (29) variable -> . NUMERO
+
+    PARENTESIS_CE   reduce using rule 41 (empty -> .)
+    ID              shift and go to state 32
+    NUMERO          shift and go to state 30
+
+    variable                       shift and go to state 31
+    B                              shift and go to state 82
+    E                              shift and go to state 45
+    empty                          shift and go to state 46
+
+state 75
+
+    (8) j_J -> COMA ID j_J .
+
+    PUNTO_Y_COMA    reduce using rule 8 (j_J -> COMA ID j_J .)
+
+
+state 76
+
+    (3) a_A -> t_tipos ID . COMA a_A
+    (4) a_A -> t_tipos ID .
+    (5) a_A -> t_tipos ID . PUNTO_Y_COMA
+
+    COMA            shift and go to state 83
+    PARENTESIS_CE   reduce using rule 4 (a_A -> t_tipos ID .)
+    PUNTO_Y_COMA    shift and go to state 84
+
+
+state 77
+
+    (10) decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE . LLAVE_ABIERTA Sprima LLAVE_CERRADA
+
+    LLAVE_ABIERTA   shift and go to state 85
+
+
+state 78
+
+    (23) sesese -> PROMPT PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA .
+
+    $end            reduce using rule 23 (sesese -> PROMPT PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA .)
+    LLAVE_CERRADA   reduce using rule 23 (sesese -> PROMPT PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA .)
+
+
+state 79
+
+    (22) sesese -> WRITE PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA .
+
+    $end            reduce using rule 22 (sesese -> WRITE PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA .)
+    LLAVE_CERRADA   reduce using rule 22 (sesese -> WRITE PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA .)
+
+
+state 80
+
+    (39) B -> E COMA B .
+
+    PARENTESIS_CE   reduce using rule 39 (B -> E COMA B .)
+
+
+state 81
+
+    (16) Sprima -> WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA . sesese LLAVE_CERRADA
+    (18) sesese -> . ID ASIGNACION E PUNTO_Y_COMA
+    (19) sesese -> . ID ASIGNACION E
+    (20) sesese -> . IF PARENTESIS_AB E PARENTESIS_CE
+    (21) sesese -> . RETURN E PUNTO_Y_COMA
+    (22) sesese -> . WRITE PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA
+    (23) sesese -> . PROMPT PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA
+
+    ID              shift and go to state 20
+    IF              shift and go to state 21
+    RETURN          shift and go to state 19
+    WRITE           shift and go to state 16
+    PROMPT          shift and go to state 14
+
+    sesese                         shift and go to state 86
+
+state 82
+
+    (37) Yprima -> ID PARENTESIS_AB B . PARENTESIS_CE
+
+    PARENTESIS_CE   shift and go to state 87
+
+
+state 83
+
+    (3) a_A -> t_tipos ID COMA . a_A
+    (3) a_A -> . t_tipos ID COMA a_A
+    (4) a_A -> . t_tipos ID
+    (5) a_A -> . t_tipos ID PUNTO_Y_COMA
+    (6) a_A -> . empty
+    (13) t_tipos -> . INT
+    (14) t_tipos -> . BOOL
+    (15) t_tipos -> . CHARS
+    (31) t_tipos -> . t_tipos AND Y
+    (41) empty -> .
+
+    INT             shift and go to state 9
+    BOOL            shift and go to state 10
+    CHARS           shift and go to state 7
+    PARENTESIS_CE   reduce using rule 41 (empty -> .)
+
+    empty                          shift and go to state 62
+    a_A                            shift and go to state 88
+    t_tipos                        shift and go to state 60
+
+state 84
+
+    (5) a_A -> t_tipos ID PUNTO_Y_COMA .
+
+    PARENTESIS_CE   reduce using rule 5 (a_A -> t_tipos ID PUNTO_Y_COMA .)
+
+
+state 85
+
+    (10) decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA . Sprima LLAVE_CERRADA
+    (16) Sprima -> . WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA
+    (17) Sprima -> . sesese
+    (18) sesese -> . ID ASIGNACION E PUNTO_Y_COMA
+    (19) sesese -> . ID ASIGNACION E
+    (20) sesese -> . IF PARENTESIS_AB E PARENTESIS_CE
+    (21) sesese -> . RETURN E PUNTO_Y_COMA
+    (22) sesese -> . WRITE PARENTESIS_AB B PARENTESIS_CE PUNTO_Y_COMA
+    (23) sesese -> . PROMPT PARENTESIS_AB ID PARENTESIS_CE PUNTO_Y_COMA
+
+    WHILE           shift and go to state 17
+    ID              shift and go to state 20
+    IF              shift and go to state 21
+    RETURN          shift and go to state 19
+    WRITE           shift and go to state 16
+    PROMPT          shift and go to state 14
+
+    sesese                         shift and go to state 15
+    Sprima                         shift and go to state 89
+
+state 86
+
+    (16) Sprima -> WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese . LLAVE_CERRADA
+
+    LLAVE_CERRADA   shift and go to state 90
+
+
+state 87
+
+    (37) Yprima -> ID PARENTESIS_AB B PARENTESIS_CE .
+
+    ID              reduce using rule 37 (Yprima -> ID PARENTESIS_AB B PARENTESIS_CE .)
+    AND             reduce using rule 37 (Yprima -> ID PARENTESIS_AB B PARENTESIS_CE .)
+
+
+state 88
+
+    (3) a_A -> t_tipos ID COMA a_A .
+
+    PARENTESIS_CE   reduce using rule 3 (a_A -> t_tipos ID COMA a_A .)
+
+
+state 89
+
+    (10) decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima . LLAVE_CERRADA
+
+    LLAVE_CERRADA   shift and go to state 91
+
+
+state 90
+
+    (16) Sprima -> WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA .
+
+    $end            reduce using rule 16 (Sprima -> WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA .)
+    LLAVE_CERRADA   reduce using rule 16 (Sprima -> WHILE PARENTESIS_AB E PARENTESIS_CE LLAVE_ABIERTA sesese LLAVE_CERRADA .)
+
+
+state 91
+
+    (10) decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA .
+
+    WHILE           reduce using rule 10 (decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA .)
+    ID              reduce using rule 10 (decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA .)
+    IF              reduce using rule 10 (decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA .)
+    RETURN          reduce using rule 10 (decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA .)
+    WRITE           reduce using rule 10 (decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA .)
+    PROMPT          reduce using rule 10 (decFun -> FUNCTION decTipos ID PARENTESIS_AB a_A PARENTESIS_CE LLAVE_ABIERTA Sprima LLAVE_CERRADA .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ID in state 22 resolved as shift
+WARNING: shift/reduce conflict for ID in state 55 resolved as shift
